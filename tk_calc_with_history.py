@@ -93,7 +93,7 @@ def imp_dot():
     data.set(data.get()+'.')
     
 #-FOR equals and del
-def imp_equals():
+def imp_equals(*args):
     global data
     try:
         example=data.get()
@@ -207,10 +207,10 @@ def imp_int():
 def imp_ceil():
     global data
     try:
-        exaple=data.get()
-        res=eval(exaple)
+        example=data.get()
+        res=eval(example)
         data.set(round(res))
-        history_listbox.insert(0, (str(example)+str(' = ')+str(data.get())))
+        history_listbox.insert(0, (str(example)+str(' ≈ ')+str(data.get())))
     
     except ZeroDivisionError: 
         data.set("Division by zero")
@@ -281,8 +281,8 @@ btn.grid(column=3, row=6)
 btn=ttk.Button(text='/', command=imp_division)
 btn.grid(column=3, row=7)
 
-btn=ttk.Button(text='=', command=imp_equals)
-btn.grid(column=2, row=7, rowspan=2, ipady=13)
+btnr=ttk.Button(text='=', command=imp_equals)
+btnr.grid(column=2, row=7, rowspan=2, ipady=13)
 
 btn=ttk.Button(text='.', command=imp_dot)
 btn.grid(column=0, row=7)
@@ -364,6 +364,9 @@ btn.grid(column=5, row=1, ipady=28)
 
 btn=ttk.Button(text="int('x', base)", command=imp_int)
 btn.grid(column=6, row=1, ipady=28)
+
+
+#btnr.bind("<KP_Enter>", imp_equals)
 
 root.config(menu=main_menu)
 root.mainloop()
